@@ -1,11 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import Game from './game/game';
-import {NormalForm} from './antd3/normalForm'
-import 'antd/dist/antd.css';
-import MyComponent from './study_dnd/MyComponent'
+
+// eslint-disable-next-line
+import OurChartCard, {TestChart} from './antd3/OurChartCard';
+import AntCharts from './antd3/AntCharts';
+import {NormalForm} from './antd3/normalForm';
+import {tellType} from './basic_js/tellType'
+
 
 ReactDOM.render(
-  <MyComponent />,
+  <>
+    <TestChart />
+    <AntCharts />
+  </>,
   document.getElementById('root')
 );
