@@ -1,17 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// eslint-disable-next-line
-import OurChartCard, {TestChart} from './antd3/OurChartCard';
-import AntCharts from './antd3/AntCharts';
-import {NormalForm} from './antd3/normalForm';
-import {tellType} from './basic_js/tellType'
+import Father from './react_grammar/special_topics/2InvokerSonFunc';
 
 
 ReactDOM.render(
   <>
-    <TestChart />
-    <AntCharts />
+    <Father />
   </>,
   document.getElementById('root')
 );
