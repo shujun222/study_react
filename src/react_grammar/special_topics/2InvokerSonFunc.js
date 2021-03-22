@@ -18,9 +18,12 @@ export default class Father extends React.Component{
             <h3>father:</h3> 
             <p>
                 在父组件上调用子组件的方法，或者父组件访问子组件的内容？<br/>
-                此父组件没有state，onChange时直接改变子组件内容
+                1. 给子组件传递一个方法：将子组件整个类全部指向this.sonObj变量<br/>
+                2. 子组件调用父组件传入的函数，把自身赋给父组件
+                3. 父组件中this.sonObj就相当于子组件的this了，this.sonObj.xxx随便调用子组件方法和state
             </p>
 
+            {/* 3. 父组件中this.sonObj调用子组件方法 */}
             <button onClick={() => {this.sonObj.showSonInfo()}}>
                 调用子组件方法
             </button>
@@ -31,6 +34,8 @@ export default class Father extends React.Component{
             <button onClick={() => {message.success("子组件state: "+this.sonObj.state.name)}}>
                 show 子组件state
             </button>
+
+            {/* 1. 给子组件传递一个方法：将子组件整个类全部指向this.sonObj变量 */}
             <Son getSonFuncs={(son)=>{this.sonObj=son}} />
         </div>    
     }
@@ -44,7 +49,7 @@ class Son extends React.Component {
     };
 
     componentDidMount(){
-        // 调用父组件传入的函数，把自身赋给父组件
+        // 2. 子组件调用父组件传入的函数，把自身赋给父组件
         this.props.getSonFuncs(this);
     }
 
