@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 
 // import {TestButton} from './antd4/TestButton';
 // import {Demo} from './antd4/FormTest';
-import Demo from './antd4/FormFuncInvoke';
+// import Demo from './antd4/FormFuncInvoke';
 import Optimize from './react_grammar/3high_guide/OptimizePerformance';
 
 

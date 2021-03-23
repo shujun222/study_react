@@ -40,6 +40,9 @@ const Demo = () => {
           note: 'Hi there!',
         });
         return;
+      default:
+        return;
+
     }
   };
 
