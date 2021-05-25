@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" /> 
+	<title>Study React</title>
+	<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+	<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+	<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+    <pre>
+        高阶函数：
+        如果一个函数符合下面2个种的任何一个，那么此函数就算高阶:
+        1. 若A是函数，接收的参数也是一个函数
+        2. 若A是函数，返回值依然是一个函数
+        常见的有：Promise, setTimeout, arr.map() so on
+    
+        函数柯里化：
+        通过函数调用继续返回函数，多次接收的参数最后统一处理
+    </pre>
+
+	<div id="example"></div>
+
+	<script type="text/babel">
+        console.log("全局是有event关键词的 ", event);
+
+        class Demo extends React.Component {
+            state = {
+                name: "",
+                password: "",
+
+                name2: "",
+                password2: ""
+            };
+
+            changeValue = (stateKey)=> {
+                return (e) => {
+                    console.log("changeValue ", e, " ", e.target.value);
+                    this.setState({[stateKey]: e.target.value});
+                }
+            }
+
+            /**
+                这样写有问题，第一次onChage的时候，event.target是初始化dom传递下来的指针，即整个页面的dom对象
+                等第二次onChange, 竟然好了，哈哈，太好玩了
+                此时应该是引发了render(), 当选的event变成input了，直接取event太危险了
+            */
+            changeValue2 = (e, stateKey)=> {
+                console.log("changeValue2 ", e, " ", e.target.value);
+                return () => {
+                    console.log("changeValue2 2 ", e, " ", e.target.value);
+                    this.setState({[stateKey]: e.target.value});
+                }
+            }
+
+            changeValue3 = (e, stateKey)=> {
+                console.log("changeValue3 ", e, " ", e.target.value);
+                this.setState({[stateKey]: e.target.value});
+            }
+            
+            submitForm = (e)=> {
+                e.preventDefault();
+                const {name, password} = this.state;
+                alert(`用户名：${name}, 密码：${password}`);
+            }
+
+            submitForm2 = (e)=> {
+                e.preventDefault();
+                const {name2, password2} = this.state;
+                alert(`用户名：${name2}, 密码：${password2}`);
+            }
+
+            render() {
+                const {name, password, name2, password2} = this.state;
+                return (<div>
+                    <form onSubmit={this.submitForm}>
+                        用户名：<input type="text" value={name} onChange={this.changeValue("name")} />
+                        密码: <input type="password" value={password} onChange={this.changeValue("password")}/>
+                        <button>submit</button>
+                    </form>
+
+                    用户名的onChage是错的，那样应该是传递下去了一个指针<br/>
+                    密码的onChage是对的，但是注意一定得传递参数(event), 如果是() => this.changeValue3(event, "password2")， event是全局，不会改的<br/>
+                    而且认准的是第一个参数，(e) => this.xx , 如果传递成了 (type, event) => this; 那么tpye才是事件
+                    <form onSubmit={this.submitForm2}>
+                        用户名：<input type="text" value={name2} onChange={this.changeValue2(event, "name2")} />
+                        密码: <input type="password" value={password2} onChange={ event => this.changeValue3(event, "password2")}/>
+                        <button>submit</button>
+                    </form>
+
+                    所有事件处理的本质在于提供一个参数e, 然后函数内部e.target; js事件触发(或者reactd特性)的时候，
+                    会自动传递event，万万不可以使用全局event <br/>
+                    so: 如果需要传递参数，认准:
+                    (event) => this.changeValue3(event, "password2")
+
+                </div>);
+            }
+        }
+        
+		ReactDOM.render(<Demo />, document.getElementById('example'));
+	</script>
+
+</body>
+
+</html>

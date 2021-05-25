@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+
+	<script>
+		function jqueryAjax() {
+            // 1. 通用性写法
+            // $.ajax({
+            //     type: "get",
+            //     url: "https://so.csdn.net/api/v2/search?q=王力宏&t=userinfo",
+            //     dataType: "json",
+            //     success: function (data) {
+            //         console.log(data);
+            //         document.getElementById("myDiv").innerHTML = JSON.stringify(data);
+            //     }
+            // });
+            
+            
+            // 2. 指定调用方法类型
+            $.get(
+                "https://so.csdn.net/api/v2/search?q=王力宏&t=userinfo",
+                function (data) {
+                    console.log(data);
+                    document.getElementById("myDiv").innerHTML = JSON.stringify(data);
+                }
+            );
+
+            // 3. 指定返回值
+            // $.getJSON(
+            //     "https://so.csdn.net/api/v2/search?q=王力宏&t=userinfo",
+            //     function (data) {
+            //         console.log(data);
+            //         document.getElementById("myDiv").innerHTML = JSON.stringify(data);
+            //     }
+            // );
+
+		}
+	</script>
+</head>
+
+<body>
+
+	<h2>五花八门</h2>
+	<pre>
+		1. 通用做法 $.ajax()
+        2. 指定方法类型：$.post() && $.get()
+        3. 指定格式类型 $.getJSON(url, data, func);
+	</pre>
+	<button type="button" onclick="jqueryAjax()">修改内容</button>
+	<div id="myDiv">数据返回区域</div>
+
+</body>
+
+</html>
+

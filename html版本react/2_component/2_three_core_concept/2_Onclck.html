@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>如何进行js事件绑定</title>
+</head>
+<body>
+    <p>
+        这个专题真的是解决了我心心念念已久的问题，js原生应该如何绑定click事件
+    </p>
+
+    <button id="bt1">按钮1</button>
+    <button id="bt2">按钮2</button>
+    <button id="bt3" onclick="alert('按钮3被点击了')">按钮3</button>
+
+    <script>
+        var bt1 = document.getElementById("bt1");
+        bt1.addEventListener('click', ()=>{
+            alert("按钮1被点击了");
+        });
+
+        var bt2 = document.getElementById("bt2");
+        bt2.onclick = ()=>{
+            alert("按钮2被点击了");
+        }
+
+        // 3个方法在react中都是可以继续玩的，但是，react推荐使用方法3哦
+    </script>
+</body>
+</html>

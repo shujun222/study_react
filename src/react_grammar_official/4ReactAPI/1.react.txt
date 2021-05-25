@@ -1,0 +1,34 @@
+1. 组件
+React.Component
+React.PureComponent
+
+
+创建 React 元素
+JSX 
+React.createElement() 
+
+------------------    不理解的部分 ----------------
+Refs
+React.createRef
+React.forwardRef
+
+react竟然也有lazy加载
+React.lazy
+
+这个必须得掌握的
+Hook
+Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。Hook 拥有专属文档章节和单独的 API 参考文档：
+
+基础 Hook
+useState
+useEffect
+useContext
+
+额外的 Hook
+useReducer
+useCallback
+useMemo
+useRef
+useImperativeHandle
+useLayoutEffect
+useDebugValue

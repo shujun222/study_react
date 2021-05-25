@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Hello React!</title>
+	<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+	<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+	<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+
+	<div id="example"></div>
+
+	<script type="text/babel">
+        function Demo(){
+            console.log(666);
+            return <h2>我是一个类组件</h2>;
+        }
+
+        
+		ReactDOM.render(<Demo />, document.getElementById('example'));
+        //发生了什么？
+        // 1. 找到组件<Demo />
+        // 2. 将虚拟dom <Demo />转为真实dom并渲染：React.CreateElement(<h2/>, null, "我是一个函数类组件");
+
+	</script>
+
+</body>
+
+</html>
