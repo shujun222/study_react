@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './8_special/4_context/Context';
+import App from './8_special/6_error_boundary/Parent';
 
 
 ReactDOM.render(
