@@ -31,6 +31,10 @@ export default class LoginControl extends React.Component {
         this.setState({isLoggedIn: false});
     }
 
+    receiveMail = () => {
+        this.setState({unReadMail: [1]});
+    }
+
     render() {
         // 1. return外面，render里面，或者函数里面进行if else判断，返回一个元素变量。
         let button;
@@ -60,7 +64,10 @@ export default class LoginControl extends React.Component {
                 三目运算控制元素显示：
                 {this.state.unReadMail.length>0 ? 
                     <span>你有未读邮件</span>:
-                    <span>你的邮箱是空的，请别人给你发邮件吧！</span>
+                    <span>
+                        你的邮箱是空的，请别人给你发邮件吧！
+                        <button onClick={this.receiveMail}>接收邮件</button>
+                    </span>
                 }    
             </div>
             
