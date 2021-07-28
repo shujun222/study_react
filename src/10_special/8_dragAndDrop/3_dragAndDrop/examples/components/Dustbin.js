@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
  
 import { DropTarget } from 'react-dnd';
-import ItemTypes from '../types';
+import ItemTypes from './types';
  
 const style = {
 	height: '12rem',

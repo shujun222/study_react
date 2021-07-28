@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>看我瞬移</title>
+    <style type="text/css">
+        #div1 {
+            width: 350px;
+            height: 190px;
+            padding: 10px;
+            border: 1px solid #aaaaaa;
+        }
+    </style>
+    <script>
+        function drop() {
+            document.getElementById('div1').appendChild(document.getElementById('drag1'));
+        }
+    </script>
+</head>
+
+<body>
+
+    <p>拖动三哥到矩形框中，限制他的魂力:</p>
+
+    <div id="div1"></div>
+    <br>
+    <img id="drag1" src="tangsan.jpg" width="336"> 
+    <button onclick="drop()">第三魂技，瞬移</button>
+
+</body>
+
+</html>

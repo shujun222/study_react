@@ -1,12 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './1_jsx/FuncComp';
+// import Example from './10_special/8_dragAndDrop/chess/3_react_dnd/Example';
+import Example from './10_special/8_dragAndDrop/4_examples/4_accept_special_targets/Container';
 
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
+ReactDOM.render(<Example />, document.getElementById('root'))

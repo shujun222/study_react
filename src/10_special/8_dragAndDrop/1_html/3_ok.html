@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>拖拽多个控件</title>
+    <style type="text/css">
+        #div1,
+        #div2 {
+            float: left;
+            width: 350px;
+            height: 300px;
+            padding: 10px;
+            border: 1px solid #aaaaaa;
+            margin-right: 40px;
+        }
+
+        #div3 {
+            width: 200px;
+            height: 200px;
+            background-color: rebeccapurple;
+        }
+    </style>
+    <script>
+        // ondragover，鼠标未松开之前一直在触发，
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        // ondrop鼠标释放时触发一次；
+        function drop(ev) {
+            let sourceId = ev.dataTransfer.getData("sourceId")
+            ev.target.appendChild(document.getElementById(sourceId));
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("sourceId", ev.target.id);
+        }
+    </script>
+</head>
+
+<body>
+
+    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">蓝银领域</div>
+    <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">杀神领域</div>
+
+    <div style="clear: both; margin-top: 50px;">
+        <div id="div3" draggable="true" ondragstart="drag(event)">我是马红俊</div>
+        <img src="tangsan.jpg" id="drag1" ondragstart="drag(event)" width="336">
+
+        <pre style="clear: both;">
+        图片默认是draggable="true"，普通div还真不写就不行
+        如果有多个拖拽源头，那得写ondragstart了哦
+        
+    </pre>
+    </div>
+
+</body>
+
+</html>
