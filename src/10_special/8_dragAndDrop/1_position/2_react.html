@@ -1,0 +1,76 @@
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+<style>
+    .dragable {
+        height: 200px;
+        width: 200px;
+        background-color: red;
+        position: fixed;
+    }
+</style>
+
+<script type="text/babel">
+    class Drag extends React.Component {
+        constructor() {
+            super()
+            this.state = {
+                needX: 0,
+                needY: 0
+            }
+            this.disX = 0;
+            this.disY = 0;
+        }
+
+        render() {
+            // 第一步：拖拽元素绑定onmousedown，onmouseup事件
+            return <div className="dragable" style={{ left: this.state.needX, top: this.state.needY }}
+                onMouseDown={this.fnDown.bind(this)}
+                onMouseUp={this.fnUp.bind(this)}
+            >
+            </div>
+        }
+
+        fnDown(e) {
+            // 光标的坐标
+            console.log(e.clientX, e.clientY);
+            // div的这个元素的偏移量，左上角坐标那个点
+            console.log(e.target.offsetLeft, e.target.offsetTop);
+            // 第二步：记录拖拽起始位置，鼠标按下时document绑定onmousemove事件，实时改变元素的布局style
+            // 鼠标在div上点击时离左上角的距离(disX, disY)
+            this.disX = e.clientX - e.target.offsetLeft;
+            this.disY = e.clientY - e.target.offsetTop;
+
+            // 这个用法挺有意思的哈
+            document.onmousemove = this.fnMove.bind(this)
+        }
+
+        fnMove(e) {
+            // 这样div会移动到鼠标光标上
+            // this.setState({
+            //     needX: e.clientX ,
+            //     needY: e.clientY 
+            // })
+
+            this.setState({
+                needX: e.clientX - this.disX ,
+                needY: e.clientY - this.disY
+            })
+        }
+        
+        fnUp() {
+            // 第三步：鼠标放开时document移除onmousemove事件
+            document.onmousemove = null
+        }
+    }
+    ReactDOM.render(<Drag />, app)
+
+</script>
+
+<div>
+    <a href="https://blog.csdn.net/huzhenv5/article/details/103787204">react实现原始拖拽</a>
+    原始到html的drag, drop属性都没用 <br/>
+    使用的是：onmousedown，onmouseup，onmousemove
+</div>
+<div id="app"></div>
