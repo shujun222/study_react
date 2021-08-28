@@ -19,20 +19,24 @@
             // 类里面只有两种方式：定义函数， 赋值语句(前面不能写this)
             state = {isHot: true};
 
+            // constructor() {
+            //     super()
+            //     this.handleClick = this.handleClick.bind(this)
+            // }
+           
+            // handleClick () {
+            //     console.log("被点击了2");
+            //     // 因为类中的方法只能被实例调用(与react无关，es6这么玩的), 但是当前函数赋值给了onClick
+            //     // 所以函数内this就会丢失
+            //     const isHot = !this.state.isHot;
+            //     this.setState({isHot});
+            // }
+
             handleClick = ()=> {
-                console.log("被点击了");
+                console.log("被点击了1");
                 const isHot = !this.state.isHot;
                 this.setState({isHot});
             }
-
-            handleClick () {
-                console.log("被点击了");
-                // 因为类中的方法只能被实例调用(与react无关，es6这么玩的), 但是当前函数赋值给了onClick
-                // 所以函数内this就会丢失
-                const isHot = !this.state.isHot;
-                this.setState({isHot});
-            }
-
 
             render() {
                 return <h2 onClick={this.handleClick}>

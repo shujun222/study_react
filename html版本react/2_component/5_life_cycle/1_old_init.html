@@ -30,6 +30,7 @@
 
             componentDidMount() {
                 console.log("componentDidMount...");
+                setInterval(this.add, 1000)
             }
 
             componentWillUnmount() {
@@ -46,6 +47,7 @@
             death = () => {
                 ReactDOM.unmountComponentAtNode(document.getElementById("test"));
             }
+
             
             render() {
                 console.log("render...");

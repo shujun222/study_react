@@ -17,7 +17,8 @@ export default class LifeCycleAction extends Component {
 
     render() {
         console.log("Father render...");
-        return (<div style={{width: '400px', border: '1px dashed red', padding: '20px'}}>
+        return (
+        <div style={{width: '400px', border: '1px dashed red', padding: '20px'}}>
             朋友圈列表：
             {this.state.friendsList.map((item, index) => <Friend data={item} key={index} name="haha" />)}
         </div>)
