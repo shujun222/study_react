@@ -17,7 +17,7 @@
         class Demo extends React.Component {
             // 如果state写在构造器里面，那么得写生this.state
             // 类里面只有两种方式：定义函数， 赋值语句(前面不能写this)
-            state = {isHot: true};
+            state = {isHot: true, data: [1, 2, 3]};
 
             // constructor() {
             //     super()
@@ -40,7 +40,7 @@
 
             render() {
                 return <h2 onClick={this.handleClick}>
-                    今天天气：{this.state.isHot ? "炎热":"凉爽"}
+                    今天天气：{this.state.isHot ? "炎热":"凉爽"}					
                 </h2>;
             }
         }

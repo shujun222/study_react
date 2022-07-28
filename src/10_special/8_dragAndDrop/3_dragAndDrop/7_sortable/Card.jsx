@@ -68,7 +68,7 @@ export const Card = ({ text, index, moveCard }) => {
     const [{ isDragging }, drag] = useDrag({
         type: "card",
 
-        item: () => ({ index }),
+        item: { index },
 
         collect: (monitor) => ({
             isDragging: monitor.isDragging(),

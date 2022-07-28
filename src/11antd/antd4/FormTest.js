@@ -37,7 +37,7 @@ const itemStyle = {
     border: '1px solid green'
 }
 
-export const Demo = () => {
+const Demo = () => {
   const onFinish = (values) => {
     message.info('Success:', values);
   };
@@ -106,3 +106,4 @@ export const Demo = () => {
   );
 };
 
+export default Demo;

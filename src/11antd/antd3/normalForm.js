@@ -35,4 +35,4 @@ class NormalForm extends React.Component {
 }
 
 NormalForm = Form.create({})(NormalForm);
-export {NormalForm};
+export default NormalForm;
