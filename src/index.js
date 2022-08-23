@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// import Example from './11antd/antd3/normalForm'
-import Example from './11antd/antd4/FormTest'
+import Example from './7_redux/7_office/2_counter/redux'
 // import Example from './0_basic/App'
 
 

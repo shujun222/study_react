@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux'
+import {combineReducers, rootReducer} from 'redux'
 import counter from './counter'
 import person from './person'
 
