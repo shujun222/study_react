@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { minusAction, plusAction, plusAsyncAction1, 
-    plusAsyncAction2, plusAsyncAction3 } from './counter_action'
+    plusAsyncAction2 } from './counter_action'
 import store from './store';
 
 export default class Counter extends Component {
@@ -43,7 +43,7 @@ export default class Counter extends Component {
         // 方式2：大费周章，得传递给dispatch一个function
         store.dispatch(plusAsyncAction2(selectNum, 2000));
         // 方式3：和方式2一样，只是使用非柯里化原则
-        // store.dispatch( () => plusAsyncAction3(selectNum, 2000));
+        // store.dispatch( () => plusAsyncAction1(selectNum, 2000));
     }
 
     render() {

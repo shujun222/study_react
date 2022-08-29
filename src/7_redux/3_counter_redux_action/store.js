@@ -8,4 +8,6 @@ import {createStore, applyMiddleware} from 'redux'
 import counter_reducers from './counter_reducers'
 import thunk from 'redux-thunk'
 
+// 要把异步actionCreator从ui组件中抽出去到action中，就得需要异步中间件applyMiddleware(thunk)
 export default createStore(counter_reducers, applyMiddleware(thunk))
+

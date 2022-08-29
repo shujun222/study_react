@@ -1,32 +1,13 @@
 import React, { useState } from 'react';
 import styles from '../common/Counter.module.css';
-import { fetchCount } from '../common/counterAPI';
+import { increment, decrement, incrementByAmount, incrementIfOdd, incrementAsync } from './counterSlice'
+import { connect } from 'react-redux';
 
 
-
-export default function Counter() {
-    const [count, setCount] = useState(0)
+function Counter(props) {
     let [incrementAmount, setIncrementAmount] = useState(2);
     // 防止用户输入非数值类型
     incrementAmount = Number(incrementAmount) || 0
-
-    function decrement() {
-        setCount(count - 1)
-    }
-
-    const increment = _ => setCount(count + 1)
-    
-    function incrementIfOdd() {
-        if (count % 2 === 1) {
-            setCount(count + incrementAmount)
-        }
-    }
-
-    function incrementAsync() {
-        fetchCount(incrementAmount).then(data => {
-            setCount(count + data)
-        })
-    }
 
     return (
         <div>
@@ -34,15 +15,16 @@ export default function Counter() {
                 <button
                     className={styles.button}
                     aria-label="Decrement value"
-                    onClick={decrement}
+                    onClick={props.decrement}
                 >
                     -
                 </button>
-                <span className={styles.value}>{count}</span>
+                props: <span className={styles.value}>{props.count}</span>
+
                 <button
                     className={styles.button}
                     aria-label="Increment value"
-                    onClick={increment}
+                    onClick={props.increment}
                 >
                     +
                 </button>
@@ -57,24 +39,28 @@ export default function Counter() {
                 />
                 <button
                     className={styles.button}
-                    onClick={() => setCount(count + incrementAmount)}
+                    onClick={() => props.incrementByAmount(incrementAmount)}
                 >
                     Add Amount
                 </button>
                 <button
                     className={styles.asyncButton}
-                    onClick={incrementAsync}
+                    onClick={() => props.incrementAsync(incrementAmount)}
                 >
                     Add Async
                 </button>
                 <button
                     className={styles.button}
-                    onClick={incrementIfOdd}
+                    onClick={() => props.incrementIfOdd(incrementAmount)}
                 >
                     Add If Odd
                 </button>
-                
             </div>
         </div>
     );
 }
+
+export default connect(
+    state => ({count: state.counter.value}),
+    {increment, decrement, incrementByAmount, incrementIfOdd, incrementAsync}
+)(Counter)

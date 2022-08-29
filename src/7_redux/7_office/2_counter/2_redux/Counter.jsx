@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import styles from './Counter.module.css';
-// eslint-disable-next-line
-import { increment, decrement, incrementByAmount, incrementIfOdd, incrementAsync,
-    incrementAsync3, incrementIfOdd2 } from './counterSlice'
-import { useSelector, useDispatch } from 'react-redux';
+import styles from '../common/Counter.module.css';
+import { increment, decrement, incrementByAmount, incrementIfOdd, incrementAsync } from './counterActions'
 import store from './store'
+import { useSelector, useDispatch } from 'react-redux';
+
 
 
 export default function Counter() {
-    const count0 = store.getState().counter.value
-    // 下面这样确实不用引入store了，但是引入了一个useSelector, 这样的好处又在哪儿呢？
-    const count = useSelector(state => state.counter.value)
+    const count0 = store.getState()
+    // 难道这个把 store.subscribe() 也给做了？
+    const count = useSelector(state => state)
 
     let [incrementAmount, setIncrementAmount] = useState(2);
     // 防止用户输入非数值类型
@@ -55,7 +54,7 @@ export default function Counter() {
                 </button>
                 <button
                     className={styles.asyncButton}
-                    onClick={() => dispatch(incrementAsync3(incrementAmount))}
+                    onClick={() => dispatch(incrementAsync(incrementAmount))}
                 >
                     Add Async
                 </button>
@@ -65,13 +64,6 @@ export default function Counter() {
                 >
                     Add If Odd
                 </button>
-                <button
-                    className={styles.button}
-                    onClick={() => dispatch(incrementIfOdd2(incrementAmount))}
-                >
-                    Add If Odd2
-                </button>
-                
             </div>
         </div>
     );

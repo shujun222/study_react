@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
-import store from './redux/store';
 
 export default class Counter extends Component {
-    componentDidMount() {
-        store.subscribe(() => {
-            this.setState({})
-        })
-    }
-
     plus = () => {
         const selectNum = this.selectNum.value;
         this.props.plus(selectNum);

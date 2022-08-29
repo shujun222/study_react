@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchCount } from './counterAPI'
+import { fetchCount } from '../common/counterAPI'
 
 // 异步方法1：createAsyncThunk + extraReducers
 // 这两个参数没啥用？随便写的吗？

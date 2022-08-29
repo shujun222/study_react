@@ -1,14 +1,16 @@
 // 引入Counter的UI组件
 import CounterUI from './Counter';
 // 引入connect，用于连接UI组件与redux
-import {connect} from 'react-redux';
-import {plusAction, minusAction, plusAsyncAction} from './redux/counter_action'
+import { connect } from 'react-redux';
+import { plusAction, minusAction, plusAsyncAction } from './redux/counter_action'
+import store from './redux/store'
+import React from 'react'
 
-function mapStateToProps(state) {    
+function mapStateToProps(state) {
     // 既然容器组件最外层传入了store, 那么本文件中就不需要引入store了
     // 需要的数据，全部由react-redux回调来传递
     // return {count: store.getState()}
-    return {count: state};
+    return { count: state };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -19,6 +21,14 @@ function mapDispatchToProps(dispatch) {
         asyncPlus: (data, time) => dispatch(plusAsyncAction(data, time))
     }
 }
+
+// mapDispatchToProps也可以不用函数，耳是直接简化成对象
+const mapDispatchToPropsObj = {
+    plus: plusAction,
+    minus: minusAction,
+    asyncPlus: plusAsyncAction
+}
+
 
 /**
  * react-redux坑点2：
@@ -47,3 +57,13 @@ export default connect(mapStateToProps, mapDispatchToProps)(CounterUI);
 //         }
 //     ),
 // )(CounterUI);
+
+
+// 或者不要那个App.js index中直接应用这个
+export function CounterConnector() {
+    const Connector = connect(mapStateToProps, mapDispatchToProps)(CounterUI)
+
+    // 创建实例的两种方法，不能 new Connector哦
+    // return React.createElement(Connector, {store})
+    return <Connector store={store} />
+}

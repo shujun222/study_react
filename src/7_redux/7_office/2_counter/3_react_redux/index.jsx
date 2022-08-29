@@ -1,7 +1,7 @@
 import React from "react"
 import { Provider } from 'react-redux';
 import logo from '../common/logo.svg'
-import Counter from './Counter'
+import CounterConnector from './Counter'
 import store from './store'
 
 export default function CounterContainer() {
@@ -11,7 +11,7 @@ export default function CounterContainer() {
                 <img src={logo} className="App-logo" alt="logo" style={{ height: "40vmin" }} />
             </div>
 
-            <Counter />
+            <CounterConnector />
         </Provider>
     )
 }

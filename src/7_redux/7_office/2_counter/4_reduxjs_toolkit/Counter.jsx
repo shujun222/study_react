@@ -1,32 +1,21 @@
 import React, { useState } from 'react';
 import styles from '../common/Counter.module.css';
-import { fetchCount } from '../common/counterAPI';
-
+// eslint-disable-next-line
+import { increment, decrement, incrementByAmount, incrementIfOdd, incrementAsync,
+    incrementAsync3, incrementIfOdd2 } from './counterSlice'
+import { useSelector, useDispatch } from 'react-redux';
+import store from './store'
 
 
 export default function Counter() {
-    const [count, setCount] = useState(0)
+    const count0 = store.getState().counter.value
+    // 下面这样确实不用引入store了，但是引入了一个useSelector, 这样的好处又在哪儿呢？
+    const count = useSelector(state => state.counter.value)
+
     let [incrementAmount, setIncrementAmount] = useState(2);
     // 防止用户输入非数值类型
     incrementAmount = Number(incrementAmount) || 0
-
-    function decrement() {
-        setCount(count - 1)
-    }
-
-    const increment = _ => setCount(count + 1)
-    
-    function incrementIfOdd() {
-        if (count % 2 === 1) {
-            setCount(count + incrementAmount)
-        }
-    }
-
-    function incrementAsync() {
-        fetchCount(incrementAmount).then(data => {
-            setCount(count + data)
-        })
-    }
+    const dispatch = useDispatch()
 
     return (
         <div>
@@ -34,15 +23,18 @@ export default function Counter() {
                 <button
                     className={styles.button}
                     aria-label="Decrement value"
-                    onClick={decrement}
+                    onClick={() => dispatch(decrement())}
                 >
                     -
                 </button>
-                <span className={styles.value}>{count}</span>
+                useSeletor: <span className={styles.value}>{count}</span>
+
+                &nbsp;
+                store.getSate(): <span className={styles.value}>{count0}</span>
                 <button
                     className={styles.button}
                     aria-label="Increment value"
-                    onClick={increment}
+                    onClick={() => dispatch(increment())}
                 >
                     +
                 </button>
@@ -57,21 +49,27 @@ export default function Counter() {
                 />
                 <button
                     className={styles.button}
-                    onClick={() => setCount(count + incrementAmount)}
+                    onClick={() => dispatch(incrementByAmount(incrementAmount))}
                 >
                     Add Amount
                 </button>
                 <button
                     className={styles.asyncButton}
-                    onClick={incrementAsync}
+                    onClick={() => dispatch(incrementAsync3(incrementAmount))}
                 >
                     Add Async
                 </button>
                 <button
                     className={styles.button}
-                    onClick={incrementIfOdd}
+                    onClick={() => dispatch(incrementIfOdd(incrementAmount))}
                 >
                     Add If Odd
+                </button>
+                <button
+                    className={styles.button}
+                    onClick={() => dispatch(incrementIfOdd2(incrementAmount))}
+                >
+                    Add If Odd2
                 </button>
                 
             </div>
