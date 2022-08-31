@@ -1,31 +1,18 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { PostAuthor } from './PostAuthor'
 import { TimeAgo } from './TimeAgo'
 import { ReactionButtons } from './ReactionButtons'
-import { selectAllPosts, fetchPosts } from './postsSlice'
 import { Spinner } from '../../../common/components/Spinner'
 
 
-export const PostsList = () => {
-  const postStatus = ''
-
-  useEffect(() => {
-    if (postStatus === 'idle') {
-
-    }
-  }, [postStatus])
-
-  const posts = ''
-  const error = ''
-
-
+export const PostsList = ({status, posts, error, reactionAdded, postUpdated, userData}) => {
   let content;
-  if (postStatus === 'loading') {
+  if (status === 'loading') {
     content = <Spinner text='loading' />
-  } else if (postStatus === 'succeeded') {
-    content = <PostExcerpt posts={posts} />
-  } else if (postStatus === 'failed') {
+  } else if (status === 'succeeded') {
+    content = <PostExcerpt posts={posts} reactionAdded={reactionAdded} postUpdated={postUpdated} userData={userData} />
+  } else if (status === 'failed') {
     content = <div>{error}</div>
   }
 
@@ -37,7 +24,7 @@ export const PostsList = () => {
   )
 }
 
-function PostExcerpt({ posts }) {
+function PostExcerpt({ posts, reactionAdded, postUpdated, userData }) {
   // 根据日期时间字符串，对帖子安装时间倒序进行排序
   const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date))
 
@@ -45,12 +32,14 @@ function PostExcerpt({ posts }) {
     <article className="post-excerpt" key={post.id}>
       <h3>{post.title}</h3>
       <div>
-        <PostAuthor userId={post.user} />
+        <PostAuthor userId={post.user} userData={userData} />
         <TimeAgo timestamp={post.date} />
       </div>
       <p className="post-content">{post.content.substring(0, 100)}</p>
-      <ReactionButtons post={post} />
-      <Link to={`/posts/${post.id}`} className="button muted-button">
+      <ReactionButtons post={post} reactionAdded={reactionAdded} />
+
+      <Link to={{pathname: `/posts/${post.id}`, state: post, reactionAdded, postUpdated }} 
+        className="button muted-button">
         View Post
       </Link>
     </article>

@@ -17,7 +17,7 @@ app.use(bodyParser())
 
 function delay(second) {
     return new Promise(resolve =>
-        setTimeout(() => resolve(), second * 1000)
+        setTimeout(resolve, second * 1000)
     );
 }
 
@@ -27,6 +27,11 @@ const router = require('koa-router')();
 //controller：数据接口
 router.get("/", async ctx => {
     const data = { "name": "唐三", "props": "蓝银草&昊天锤" }
+
+    await new Promise(resovle => {
+        setTimeout(resovle, 2000)
+    })
+
     ctx.response.body = data;
 })
 
@@ -92,6 +97,7 @@ router.post("/fakeApi/addNewPost", async ctx => {
         },
     }
 
+    await delay(3)
     ctx.response.body = data
 })
 

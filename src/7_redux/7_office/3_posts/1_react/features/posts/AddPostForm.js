@@ -1,8 +1,7 @@
+import axios from 'axios'
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { addNewPost } from './postsSlice'
 
-export const AddPostForm = () => {
+export const AddPostForm = ({userData=[], addNewPost}) => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [userId, setUserId] = useState('')
@@ -11,17 +10,31 @@ export const AddPostForm = () => {
   const onTitleChanged = e => setTitle(e.target.value)
   const onContentChanged = e => setContent(e.target.value)
   const onAuthorChanged = e => setUserId(e.target.value)
-  
-  const dispatch = useDispatch()
-  const users = useSelector(state => state.users)
 
   const canSave = [title, content, userId].every(Boolean) && addRequestStatus === "idle"
 
-  const onSavePostClicked = () => {
+  const onSavePostClicked = async() => {
     if (canSave) {
+
       try {
         setAddRequestStatus('pending')
-        dispatch(addNewPost({title, content, user: userId}))
+        let postBody = {title, content, user: userId}
+
+        let response = await axios.post('http://localhost:3006/fakeApi/addNewPost'
+            , postBody);
+        response = response.data
+
+        // const response = await fetch('http://localhost:3006/fakeApi/addNewPost', {
+        //   method: 'post',
+        //   body: JSON.stringify(postBody),
+        //   headers: {
+        //     'Content-Type': 'application/json'
+        //   }
+        // }).then(response => response.json())
+
+
+        addNewPost(response)
+
         setTitle('')
         setUserId('')
         setContent('')
@@ -35,9 +48,8 @@ export const AddPostForm = () => {
       
     }
   }
-  
 
-  const usersOptions = users.map(user => (
+  const usersOptions = userData.map(user => (
     <option key={user.id} value={user.id}>
       {user.name}
     </option>
