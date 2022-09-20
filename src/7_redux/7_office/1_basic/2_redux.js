@@ -29,7 +29,7 @@ function Operation() {
     <div style={{ border: 'dashed red', width: '200px', marginBottom: '10px' }}>
       组件1:<br />
       Value1(from store): {store.getState()} <br />
-      value2(from state): {counter}
+      {/* value2(from state): {counter} */}
       <button onClick={increment}>Increment</button>
     </div>
   )

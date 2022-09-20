@@ -78,6 +78,35 @@ router.get("/fakeApi/users", async ctx => {
 })
 
 
+router.get("/fakeApi/notifications", async ctx => {
+    let { since } = ctx.query
+
+    const notifications = [
+        { "id": "YiMGbXwEH7jQojs4zCciW", "date": "2022-09-05T23:28:01.256Z", "message": "sent you a gift", "user": "eic7K6VltNQ6b18QIPIIv" },
+        { "id": "23423232323232323s", "date": "2022-09-06T23:28:01.256Z", "message": "give you a prise", "user": "2333333333sdfdsf" },
+        { "id": "23423232323232aaa", "date": "2022-09-10T11:28:01.256Z", "message": "invite you to play football", "user": "0" }
+    ]
+
+    const notification2 = [
+        {"id":"4eCoQ6VfFDI6YPkZA6XIV","date":"2022-09-06T23:14:53.996Z","message":"says hi!","user":"u1j8Hj4R7X8voy5FT-iy2"},
+        {"id":"nVsQhmJ8QrWQqix7VvNka","date":"2022-09-06T23:18:32.937Z","message":"is glad we're friends","user":"jE_jYgoJ-OENvpc8cqEdz"},
+        {"id":"jjSj4QsfJIPjiz8MrEKOD","date":"2022-09-06T23:12:00.950Z","message":"poked you","user":"1"},
+        {"id":"Is6B7apPVvxLzeSCORymS","date":"2022-09-11T23:19:01.518Z","message":"says hi!","user":"1"}
+    ]
+    
+    let response;
+    
+    if (since === "") {
+        response = notifications
+    } else if (since === "2022-09-10T11:28:01.256Z") {
+        response = notification2
+    } else {
+        response = []
+    }
+    ctx.response.body = response
+})
+
+
 router.post("/fakeApi/addNewPost", async ctx => {
     let postParam = ctx.request.body
     console.log("postParam", postParam);
