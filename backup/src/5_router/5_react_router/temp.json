@@ -1,0 +1,15 @@
+{history: {…}, location: {…}, match: {…}, staticContext: undefined}
+
+history: length: 50action: "POP"location: {pathname: "/home", search: "", hash: "", state: undefined, key: "dc7pe6"}createHref: ƒ createHref(location)push: ƒ push(path, state)replace: ƒ replace(path, state)go: ƒ go(n)goBack: ƒ goBack()arguments: (...)caller: (...)length: 0name: "goBack"prototype: {constructor: ƒ}__proto__: ƒ ()[[FunctionLocation]]: history.js:418[[Scopes]]: Scopes[3]goForward: ƒ goForward()block: ƒ block(prompt)listen: ƒ listen(listener)__proto__: Objectlocation: pathname: "/home"search: ""hash: ""state: undefinedkey: "dc7pe6"__proto__: Objectmatch: path: "/home"url: "/home"isExact: trueparams: {}__proto__: ObjectstaticContext: undefined__proto__: Object
+
+
+history:
+
+
+location:
+
+
+match:
+
+
+

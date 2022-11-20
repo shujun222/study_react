@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Study React</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+    
+    <pre>
+1. key是什么，作用是什么？
+key是虚拟的dom的唯一标识，在dom更新时进行diff算法的比较。
+
+2. diff算法的工作流程
+   新的dom生成之后，render之前，遍历所有新的dom结构
+   1) 若旧的dom中找到了与新dom相同的key：
+        a) 若旧的dom中内容没有改变，则直接取旧的真实dom，放到界面上
+        b) 若旧的dom内容改了，则生成新的dom并渲染到界面上
+
+   2）若旧的dom中没有新dom相同的key 
+   创建真实对象，渲染的界面上
+
+3. 用index作为key值有问题吗？
+   1）如果新数据每次都是在最后，那么完全没有问题的
+   2）如果新数据插在最前面，会有效率问题，得重新渲染了
+      如果此时节点内还有输入dom，那就完蛋了，得有错误了。
+    </pre>
+    
+    <div id="test"></div>
+
+    <script type="text/babel">
+        class Demo extends React.Component {
+            state = {
+                data: [
+                    {id: 0, name: "唐三"},
+                    {id: 1, name: "小舞"},
+                    {id: 2, name: "马红俊"},
+                ]
+            }
+            
+            add = () => {
+                let data = this.state.data;
+                data = [{id: data.length, name: data.length}, ...data];
+                this.setState({data});
+            }
+            
+            render() {
+
+                return <div>
+                    <button onClick={this.add}>点我+1行</button> <br/>
+                    使用index作为key：
+                    {this.state.data.map((item, index) => (
+                        <ul key={index}>{item.name}: <input /></ul>
+                    ))}
+                    
+                    使用id作为key：
+                    {this.state.data.map((item, index) => (
+                        <ul key={item.id}>{item.name}: <input /></ul>
+                    ))}
+
+                </div>
+            }
+        }
+
+        ReactDOM.render(<Demo />, document.getElementById("test"));
+    </script>
+</body>
+
+</html>

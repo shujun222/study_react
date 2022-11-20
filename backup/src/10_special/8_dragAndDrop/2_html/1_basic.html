@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>拖动元素</title>
+    <style type="text/css">
+        #div1 {
+            width: 350px;
+            height: 190px;
+            padding: 10px;
+            border: 1px solid #aaaaaa;
+        }
+    </style>
+    <script>
+        // ondragover，鼠标未松开之前一直在触发，
+        function allowDrop(ev) {
+            console.log(ev);
+            // 为什么一定要加上这么一句呢？难道html默认dragover时是阻止放置的？
+            // 有点麻烦，如果我设计，我感觉一个drop就可以了，既然别人调用了drop，那么必定是接纳放置被拖动的元素的
+            ev.preventDefault();
+        }
+
+        // ondrop鼠标释放时触发一次；
+        function drop(ev) {
+            console.log("drop", ev);
+            ev.target.appendChild(document.getElementById('drag1'));
+        }
+    </script>
+</head>
+
+<body>
+
+    <a href="https://www.runoob.com/html/html5-draganddrop.html">菜鸟教程例子</a>
+    通过html5原生属性来拖动元素 <br />
+
+    <p>拖动三哥到矩形框中，限制他的魂力:</p>
+    <!-- 去掉这个就没法拖动了 ondragover="allowDrop(event)" -->
+    <div id="div1" ondrop="drop(event)"  ondragover="allowDrop(event)"></div>
+    <br>
+    
+    <img id="drag1" src="tangsan.jpg" width="336" draggable="true">
+    <div style="width: 200px; height:200px; border: 1px solid red">xxx</div>
+</body>
+
+</html>
