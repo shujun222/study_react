@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 /**
  * 
  *  都是一些不看，完全不可能推理知道的用法：
-    1. 第二个参数不传就是 componentDidUpdate; 
+    1. 第二个参数不传类似componentDidUpdate, 不过它挂载阶段也执行，componentDidUpdate只在update阶段; 
     2. 传递[], componentDidMount, return的函数就是componentWillUnmount
     3. 第二个参数[count]只监控count变化的componentDidUpdate
  */

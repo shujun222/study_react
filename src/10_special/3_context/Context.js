@@ -43,7 +43,7 @@ class C1 extends Component {
 
                 <p /> 
                 如果继续引用D，会报错，如果跨js引用context呢？
-                {/* <D />     */}
+                <D />    
             </div>
         );
     }

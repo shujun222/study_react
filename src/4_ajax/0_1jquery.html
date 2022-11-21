@@ -18,25 +18,25 @@
             // dataType：接收的数据格式，可以指定为'html'、'xml'、'json'、'text'等，缺省情况下根据响应的Content - Type猜测
 
             // 当然url也可以放setting里面
-            $.ajax({
-                type: "get",
-                url: "https://so.csdn.net/api/v2/search?q=王力宏&t=userinfo",
-                dataType: "json",
-                success: function (data) {
-                    console.log(data);
-                    document.getElementById("myDiv").innerHTML = JSON.stringify(data);
-                }
-            });
-
-
-            // 2. 指定调用方法类型 $.post
-            // $.get(
-            //     "https://so.csdn.net/api/v2/search?q=王力宏&t=userinfo",
-            //     function (data) {
+            // $.ajax({
+            //     type: "get",
+            //     url: "https://so.csdn.net/api/v2/search?q=王力宏&t=userinfo",
+            //     dataType: "json",
+            //     success: function (data) {
             //         console.log(data);
             //         document.getElementById("myDiv").innerHTML = JSON.stringify(data);
             //     }
-            // );
+            // });
+
+
+            // 2. 指定调用方法类型 $.post
+            $.get(
+                "https://so.csdn.net/api/v2/search?q=王力宏&t=userinfo",
+                function (data) {
+                    console.log(data);
+                    document.getElementById("myDiv").innerHTML = JSON.stringify(data);
+                }
+            );
 
             // 3. json太常用了，所有还有getJSON, 但是没有postJSON
             // $.getJSON(

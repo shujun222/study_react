@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Link, BrowserRouter, Route, NavLink, Switch, Redirect} from 'react-router-dom';
+import { Link, BrowserRouter, Route, NavLink, Switch, Redirect } from 'react-router-dom';
 import './index.css';
 
 /**
@@ -18,11 +18,11 @@ export default class router extends Component {
                     <NavLink activeClassName="active" to="/about">About</NavLink>
                     <NavLink activeClassName="active" to="/home">Home</NavLink>
                 </div>
-                    <Switch>
-                        <Route path="/about" component={About} />
-                        <Route path="/home" component={Home} />
-                        <Redirect to="/home" />
-                    </Switch>            
+                <Switch>
+                    <Route path="/about" component={About} />
+                    <Route path="/home" component={Home} />
+                    <Redirect to="/home" />
+                </Switch>
             </div>
         </BrowserRouter>)
     }
@@ -33,27 +33,27 @@ function Home(prop) {
     console.log(prop);
     return (
         <div className="content">
-                Home 主页欢迎你 <br />
-                
-                {/* tab切换页面 */}
-                <span className="tabSwitch">
-                    <NavLink activeClassName="active" to="/home/news">News</NavLink>
-                </span>
-                <span className="tabSwitch">
-                    <NavLink activeClassName="active" to="/home/messages">Messages</NavLink>
-                </span>
+            Home 主页欢迎你 <br />
 
-                {/* 路由注册 */}
-                {/* 
+            {/* tab切换页面 */}
+            <span className="tabSwitch">
+                <NavLink activeClassName="active" to="/home/news">News</NavLink>
+            </span>
+            <span className="tabSwitch">
+                <NavLink activeClassName="active" to="/home/messages">Messages</NavLink>
+            </span>
+
+            {/* 路由注册 */}
+            {/* 
                 <NavLink activeClassName="active" to="news"> 是可行的，url的相对绝对路径 
                 然鹅 <Route path="/news" path="news" 都会失败的，难道路由path一定是全路径匹配的呢？ 
                 */}
-                <Switch>
-                    <Route path="/home/news" component={News} />
-                    <Route path="/home/messages" component={Messages} />
-                    <Redirect to="/home/messages" />
-                </Switch>
-                
+            <Switch>
+                <Route path="/home/news" component={News} />
+                <Route path="/home/messages" component={Messages} />
+                <Redirect to="/home/messages" />
+            </Switch>
+
         </div>
     )
 }
@@ -61,14 +61,14 @@ function Home(prop) {
 function About() {
     return (
         <div className="content">
-            About author<br/>
+            About author<br />
             shu jun ~
         </div>
     )
 }
 
 function Messages() {
-    return(<>
+    return (<>
         <li>message1</li>
         <li>message2</li>
         <li>message3</li>
@@ -77,7 +77,7 @@ function Messages() {
 }
 
 function News() {
-    return(<>
+    return (<>
         <li>new1</li>
         <li>new1</li>
     </>);
