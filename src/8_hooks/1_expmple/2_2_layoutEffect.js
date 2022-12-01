@@ -35,3 +35,15 @@ export default function Cycle() {
     console.log("render");
     return <div id="test" style={cycle}></div>
 }
+
+/**
+Question: useEffect(fn, [])与componentDidMount的区别 
+https://www.bilibili.com/video/BV16t4y1r7oJ?p=3&vd_source=10d355be19883e4a50b66949c50a67aa
+
+1. useEffect用法有三种 2_1_effect_hook.js
+2. useEffect(fn, [])是在commit完成后异步调用，它是异步的
+   componentDidMount()是commit完成后同步调用的
+   useLayoutEffect()是同步调用的，
+   commit阶段可以分为三个：beforemutation mutation layout,
+   因为在layout之后，所以叫这个名字，其实也就是整个commit完成阶段
+ */

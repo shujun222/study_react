@@ -1,13 +1,13 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom/client';
-// import App from './10_special/12_render/3_example';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './8_hooks/1_expmple/1_1_state_excise';
 
-// const root = ReactDOM.createRoot(document.getElementById('root'));
-// root.render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
 //   <React.StrictMode>
-//     <App />
+    <App />
 //   </React.StrictMode>
-// );
+);
 
 
 
@@ -18,5 +18,6 @@
 // ReactDOM.render(<App />, document.getElementById('root'))
 
 
-
-import './10_special/12_render/4_fiber'
+// 手写react源码系列
+// import './10_special/10_render/3_fiber'
+// import './10_special/11_diff/2_multiple_nodes'
