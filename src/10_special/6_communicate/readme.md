@@ -17,3 +17,4 @@
 
 5.	PubJs 4_ajax/2_csdnSearchPubsub.js
 6.	Redux 或者 dva 
+7. window: 简单暴力

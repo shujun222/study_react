@@ -1,0 +1,53 @@
+<script>
+    function sleep1(delay) {
+        for (let ts=Date.now(); Date.now() - ts < delay; ) {
+        }
+    }
+
+    function sleep2(delay) {
+        return new Promise(resolve => setTimeout(resolve, delay))
+    }
+
+    const works = [
+        () => {
+            console.log("任务1 start");
+            sleep1(20);
+            console.log("任务1 end");
+        },
+        async () => {
+            console.log("任务2 start");
+            sleep1(6000);
+            // 这种方式不会卡住任务3？
+            // await sleep2(10000);
+            console.log("任务2 end");
+        },
+        () => {
+            console.log("任务3 start");
+            sleep1(5);
+            console.log("任务3 end");
+        },
+    ]
+
+    requestIdleCallback(workLoop)
+
+    function workLoop(deadline) {
+        console.log("本帧分配的剩余时间是", deadline.timeRemaining());
+        while(deadline.timeRemaining() > 1 && works.length > 0) {
+            let work = works.shift()
+            work()
+        }
+
+        // 如果还有工作但是没有剩余时间了
+        if (works.length > 0) {
+            requestIdleCallback(workLoop)
+        }
+    }
+</script>
+
+<body>
+    测试浏览器神奇的
+    <pre>
+
+    </pre>
+</body>
+

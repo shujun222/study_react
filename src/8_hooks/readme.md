@@ -9,3 +9,28 @@
 memo PureComponent
 useCallback 让函数不要每次都重新加载，class中不存在
 useMemo 让引用类型不要每次都重新加载，class中不存在
+
+
+hook引入原因/动机：
+https://react.docschina.org/docs/hooks-intro.html
+1. 在组件之间复用状态逻辑很难？
+   a. class
+   render props / 高阶组件 
+   providers，consumers 等其他抽象层组成的组件会形成“嵌套地狱”。
+   b. function
+   hooks, 自定义hooks可以实现？
+2. 难以理解的 class
+3. 复杂组件变得难以理解
+   class把功能拆分开了，同一个 componentDidMount 中可能也包含很多其它的逻辑，如设置事件监听，而之后需在 componentWillUnmount 中清除。
+   但是useEffect可以一起完成这个功能了；
+
+   
+
+render props
+https://react.docschina.org/docs/render-props.html
+
+HOC
+https://react.docschina.org/docs/higher-order-components.html
+例子：Redux 的 connect，react-router中withRouter()
+
+

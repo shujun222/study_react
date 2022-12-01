@@ -11,7 +11,7 @@ import ReactDOM from 'react-dom'
 export default function EffectHook() {
     const [count, setCount] = useState(0)
 
-    // 1. componentDidUpdate, componentDidMount 都会更新；
+    // 1. 等价于componentDidUpdate + componentDidMount；
     useEffect(() => {
         console.log("useEffect1");
         return () => {
@@ -20,13 +20,13 @@ export default function EffectHook() {
         }
     })
 
-    // 2. 只有componentDidMount componentWillUnmount
+    // 2. 只有componentDidMount
     // 好处：相同功能集合在一起了
     useEffect(() => {
         console.log("useEffect2");
         const timer = setInterval(() => setCount(count => count + 1), 5000)
 
-        // return的函数相当于 componentWillUnmount
+        // 因为第二个参数是[], return也只执行一次，相当于 componentWillUnmount
         return () => {
             console.log("useEffect2 clean up");
             clearInterval(timer)
@@ -43,7 +43,7 @@ export default function EffectHook() {
         setNum(num + 1)
     }
 
-    // 3. 只有num变换的时候，函数才执行
+    // 3. 等价于componentDidMount + componentDidUpdate（不过只有num变换的时候，函数才执行）
     useEffect(()=> {
         console.log("useEffect3");
         return () => {
@@ -51,6 +51,7 @@ export default function EffectHook() {
         } 
     }, [num])
 
+    console.log("render...");
     return (<>
         当前求和为{count} &nbsp;
         <button onClick={() => setCount(count + 1)}>点我+1</button> <br/>
