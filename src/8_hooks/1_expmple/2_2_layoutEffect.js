@@ -12,7 +12,11 @@ let cycle = {
     position: "absolute"
 }
 
-
+/**
+ * layouthook引入的原因 & 特性
+ * Author: shujun
+ * Date: 2022-12-1
+ */
 export default function Cycle() {
     const changePosition = () => {
         console.log("cycle", cycle);

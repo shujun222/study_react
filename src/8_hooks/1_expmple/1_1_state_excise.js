@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 /**
  * Question: 打印几次render？
+ * 八股文类似的面试题，据说是字节的
  * 
  */
 function Excise() {

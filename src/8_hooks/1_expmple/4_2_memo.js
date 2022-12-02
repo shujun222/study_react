@@ -1,40 +1,48 @@
 import React, { useState, memo } from 'react'
 
+/**
+ * memo(function, compareFun): 缓存整个组件的值，类似React.pureComponent
+ * Author: shujun
+ * Date: 2022-12-1
+ */
 export default function App() {
     const [name, setName] = useState('名称')
     const [content, setContent] = useState('内容')
-    
+
     return (
         <>
-            <div>
-                上一章的useMemo只能用来包裹函数，监听一组值, return一个具体值
-                如果想要meno整个组件的所有props呢？接下来有请：<br/>
-                memo: <br/>
-
-                当只改变content。name不变化是时候，是不会触发ChangeNameMemo组件的
-            </div>
-            <button onClick={() => setName(new Date().getTime())}>name</button> &nbsp;
-            <button onClick={() => setContent(new Date().getTime())}>content</button>
+            <h2>useMemo</h2>
+            <p>
+                有两个state: name， content; 任意更改一个state都会引起组件的重新render
+            </p>
+            <button onClick={() => setName(new Date().getTime())}>change name</button> &nbsp;
+            <button onClick={() => setContent(new Date().getTime())}>change content</button> <br/>
            
-            <ShowResult name={name}>
-                {content}
-            </ShowResult>
+            {/* 全名: <GetFullName name={name} /> <br/> */}
+            全名: <FullName name={name} /> <br/>
+
+            content: {content}
         </>
     )
 }
 
-function ChangeName({name}) {
-    console.log('ChangeName render...')
-    return name + 'new'
+// 如果需要包裹一个组件
+function GetFullName({name}) {
+    console.log('只要组件重新渲染，函数都会重新执行？')
+    return 'shu ' + name
 }
-const ChangeNameMemo = memo(ChangeName)
+// const FullName = memo(GetFullName)
 
-function ShowResult({ name, children }) {
-    return (
-        <div style={{border: '1px dashed gray', margin: '20px'}}>
-            组件：
-            <div>memo包裹的组件：<ChangeNameMemo name={name} /></div>
-            <div>children:{children}</div>
-        </div>
-    )
+// 类似于 shouldComponentUpdate(), 不过好像没有用？
+function shouldUpdate(prevProps, nextProps) {
+    console.log("nextProps.name", nextProps.name);
+    if(nextProps.name % 2 === 1){
+        return true
+    } else {
+        console.log("next.name", nextProps.name);
+        return false
+    }
 }
+const FullName = memo(GetFullName, shouldUpdate)
+
+
