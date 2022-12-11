@@ -1,0 +1,56 @@
+<body>
+    <div id="root"></div>
+    <p>
+        怎么直接引用某个js中的函数呢？
+        
+    </p>
+</body>
+
+<style>
+    div {
+        max-width: 300px;
+        /* height: 100px; */
+        border: 1px solid red;
+        padding: 10px;
+        margin-top: 5px;
+    }
+</style>
+
+<script src="./scheduleRoot.js"></script>
+
+<script>
+    let visualDom = {
+        "type": "div",
+        "props": {
+            "id": "a",
+            "children": [
+                "football",
+                {
+                    "type": "div",
+                    "props": {
+                        "id": "b",
+                        "children": [
+                            "巴西",
+                            {
+                                "type": "div",
+                                "props": {
+                                    "children": ["Neymar"]
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+
+    let rootFiber = {
+        tag: "TAG_ROOT",
+        // 如果是原生节点，指向dom元素；
+        stateNode: document.getElementById("root"),
+        props: {children: [visualDom]}
+    }
+
+    // scheduleRoot(rootFiber)
+    console.log("workLoop", workLoop);
+</script>

@@ -1,0 +1,79 @@
+<style>
+    div {
+        max-width: 300px;
+        /* height: 100px; */
+        border: 1px solid red;
+        padding: 10px;
+        margin-top: 5px;
+    }
+</style>
+
+<body>
+    <div id="root"></div>
+</body>
+
+<script>
+    /**
+     * https://www.babeljs.cn/repl
+     
+    <div id="a">
+        football
+        <div id="b">
+            巴西
+            <div>Neymar</div>    
+        </div>
+    </div>
+     * */
+
+    let visualDom = {
+        "type": "div",
+        "props": {
+            "id": "a",
+            "children": [
+                "football",
+                {
+                    "type": "div",
+                    "props": {
+                        "id": "b",
+                        "children": [
+                            "巴西",
+                            {
+                                "type": "div",
+                                "props": {
+                                    "children": ["Neymar"]
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+
+    function render(visualDom, htmlDom) {
+        // 1. 创建dom
+        let dom = document.createElement(visualDom.type)
+        
+        Object.keys(visualDom.props).forEach(key => {
+            if (key === 'children') {
+                // 4. 递归儿子们
+                visualDom.props['children'].forEach(child => { 
+                    if (typeof child === 'string') {
+                        dom.appendChild(document.createTextNode(child))
+                    } else {
+                        render(child, dom)
+                    }
+                    
+                })
+            } else {
+                // 2. 设置attribute
+                htmlDom[key] = visualDom.props[key]
+            }
+        })
+
+        // 3. 挂在父级上
+        htmlDom.appendChild(dom)
+    }
+
+    render(visualDom, document.getElementById("root"))
+</script>

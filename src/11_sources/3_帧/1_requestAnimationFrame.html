@@ -1,0 +1,38 @@
+<body>
+    <div id="process-bar" style="background: lightblue; width: 0px; height: 20px;"></div>
+    <button id="btn">开始</button>
+    <p>
+        来看看进度条是怎么写的
+    </p>
+
+    <script>
+        let oDiv = document.getElementById("process-bar")
+        
+        function process() {            
+            let current = Date.now()
+            console.log("调用间隔时间：", current - start);
+            start = current
+            console.log("times", times++);
+
+            oDiv.style.width = oDiv.offsetWidth + 1 + 'px'
+            oDiv.innerHTML = oDiv.offsetWidth + '%'
+            if (oDiv.offsetWidth < 100) {
+                requestAnimationFrame(process)
+            }
+        }
+
+        let start;
+        let times = 0;
+        // document.getElementById("btn").addEventListener('click', ()=>{
+        //     oDiv.style.width = 0;
+        //     start = Date.now()
+        //     requestAnimationFrame(process)
+        // })
+
+        document.getElementById("btn").onclick = () => {
+            oDiv.style.width = 0;
+            start = Date.now()
+            requestAnimationFrame(process)
+        }
+    </script>
+</body>

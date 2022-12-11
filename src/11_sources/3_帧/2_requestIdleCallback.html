@@ -35,7 +35,7 @@
         while(deadline.timeRemaining() > 1 && works.length > 0) {
             let work = works.shift()
             work()
-        }
+        }  
 
         // 如果还有工作但是没有剩余时间了
         if (works.length > 0) {

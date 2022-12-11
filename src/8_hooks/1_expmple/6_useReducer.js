@@ -18,10 +18,11 @@ export default function Counter() {
   return (
     <>
       Count: {state.count}
-      <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+      <button onClick={() => dispatch({type: 'decrement'})}>-</button> &nbsp;
       <button onClick={() => dispatch({type: 'increment'})}>+</button>
 
-      <a href='https://react.docschina.org/docs/hooks-reference.html#usereducer'>useReducer文档</a>
+      <br/>
+      <a href='https://react.docschina.org/docs/hooks-reference.html#usereducer' target="_blank">useReducer文档</a>
       <pre>
         疑问：这个东西是不是就可用替代redux了？
       </pre>

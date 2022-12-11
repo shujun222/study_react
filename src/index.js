@@ -1,13 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './8_hooks/1_expmple/4_3_useCallback';
+// import React from 'react';
+// import ReactDOM from 'react-dom/client';
+// import App from './8_hooks/1_expmple/6_useReducer';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-//   <React.StrictMode>
-    <App />
-//   </React.StrictMode>
-);
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+// //   <React.StrictMode>
+//     <App />
+// //   </React.StrictMode>
+// );
 
 
 
@@ -19,5 +19,6 @@ root.render(
 
 
 // 手写react源码系列
-// import './10_special/10_render/3_fiber'
-// import './10_special/11_diff/2_multiple_nodes'
+import './11_sources/5_create_fiber'
+// import './8_hooks/2_sources/1_create'
+
