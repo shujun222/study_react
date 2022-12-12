@@ -69,8 +69,8 @@ function performUnitOfWork(workInProcess) {
     while (workInProcess) {
         // b. 先完成自己, 构建effect list
         console.log("  1.2 completeUnitOfWork", workInProcess.props.key || workInProcess.props.text);
-        // completeUnitOfWork(workInProcess)
-        completeUnitOfWork1(workInProcess)
+        completeUnitOfWork(workInProcess)
+        // completeUnitOfWork1(workInProcess)
         // c. 构建弟弟
         if (workInProcess.sibling) {
             return workInProcess.sibling
@@ -101,8 +101,9 @@ function completeUnitOfWork(completeWork) {
     // 第一个完成的是A1 TEXT
     // 当前节点fiber完成了，
     if (returnFiber) {
-        // first只指向大儿子？
+        // first只指向大儿子？ 只有空才走
         if (!returnFiber.firstEffect) {
+            //1 
             returnFiber.firstEffect = completeWork.firstEffect
         }
 
@@ -116,12 +117,12 @@ function completeUnitOfWork(completeWork) {
 
         // 有副作用的节点
         // console.log("completeWork.effectTag", completeWork.effectTag);
-        if (completeWork.effectTag) {
-            // 父亲已经指向过节点了, 当前completeWork是第二个兄弟节点？
+        if (completeWork.effectTag) { 
+            // 2. 父亲已经指向过节点了, 当前completeWork是第二个兄弟节点？
             if (returnFiber.lastEffect) {
                 returnFiber.lastEffect.nextEffect = completeWork
             } else {
-                // 第一次指向孩子
+                // 1. 第一次指向孩子
                 returnFiber.firstEffect = completeWork
             }
             returnFiber.lastEffect = completeWork
@@ -130,6 +131,7 @@ function completeUnitOfWork(completeWork) {
 }
 
 let currentEffect
+// eslint-disable-next-line
 function completeUnitOfWork1(completeWork) {
     if (completeWork.tag === TAG_ROOT) return
    

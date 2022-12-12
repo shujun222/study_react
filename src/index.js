@@ -1,6 +1,6 @@
 // import React from 'react';
 // import ReactDOM from 'react-dom/client';
-// import App from './8_hooks/1_expmple/6_useReducer';
+// import App from './8_hooks/1_expmple/1_0_state_hook';
 
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(
@@ -19,6 +19,8 @@
 
 
 // 手写react源码系列
-import './11_sources/5_create_fiber'
+// import './11_sources/6_update_fiber'
 // import './8_hooks/2_sources/1_create'
+
+import './8_hooks/1_expmple'
 

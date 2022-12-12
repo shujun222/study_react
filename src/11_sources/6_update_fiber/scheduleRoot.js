@@ -230,7 +230,7 @@ function reconcileChildren(currentFiber) {
                 key: newChild.key, // 唯一标识
                 props: newChild.props, // 属性对象
 
-                alternate: oldFiber, // 新的
+                alternate: oldFiber, 
                 nextEffect: null
             }
         } else {

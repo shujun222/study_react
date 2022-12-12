@@ -1,4 +1,6 @@
-import React, { useReducer } from 'react'
+import React from 'react'
+// import { useReducer } from 'react'
+import { useReducer } from '../2_sources/6_useReducer'
 
 const initialState = {count: 0};
 

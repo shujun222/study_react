@@ -1,4 +1,7 @@
-import React, { useState, memo, useCallback } from 'react'
+import React, { useState, memo } from 'react'
+
+// import { useCallback } from 'react'
+import { useCallback } from '../2_sources/4_3_useCallback'
 
 /**
  * memo(function, compareFun): 缓存整个组件的值，类似React.pureComponent
@@ -14,7 +17,7 @@ export default function App() {
 
     return (
         <>
-            <h2>useMemo</h2>
+            <h2>useCallback</h2>
             <p>
                 有两个state: name， content; 任意更改一个state都会引起组件的重新render
             </p>
@@ -22,8 +25,8 @@ export default function App() {
             <button onClick={() => setContent(new Date().getTime())}>change content</button> <br/>
            
             {/* 如果还有入参，func, 那memo也没用 */}
-            {/* 全名: <FullName name={name} log={log} /> <br/> */}
-            全名: <FullName name={name} log={useLog} /> <br/>
+            {/* （子组件）全名: <FullName name={name} log={log} /> <br/> */}
+            （子组件）全名: <FullName name={name} log={useLog} /> <br/>
 
             content: {content}
         </>

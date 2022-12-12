@@ -1,6 +1,8 @@
-import React, { useState, useMemo } from 'react'
-import { message } from 'antd'
-import 'antd/dist/antd.css';
+import React, { useState } from 'react'
+
+// import { useMemo } from 'react'
+import { useMemo } from '../2_sources/4_1_useMemo'
+
 
 /**
  * useMemo(function, [x]): 缓存函数的返回值
@@ -23,7 +25,7 @@ export default function App() {
     // 谁update也没用，老子只运行一次
     // const fullName = useMemo(() => getFullName(name), [])
     // 谁update都可以，一直运行
-    // const fullName = useMemo(() => getFullName(name), [])
+    // const fullName = useMemo(() => getFullName(name))
 
 
     return (
