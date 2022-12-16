@@ -1,6 +1,6 @@
 import React, { Component, lazy, Suspense } from 'react'
 import {BrowserRouter, Route, NavLink, Switch, Redirect} from 'react-router-dom';
-import '../../5_router/5_react_router/index.css'
+import '../../../5_router/5_react_router/index.css'
 
 // 普通引入, 两个模块会一次性加载进来：相关的js文件在network中被加载了，
 // 但是切换路由时，组件还是销户再渲染的
@@ -13,6 +13,8 @@ import '../../5_router/5_react_router/index.css'
 const About = lazy(() => import('./About'))
 const Home = lazy(() => import('./Home'))
 
+const LazyAbout = <Suspense><About /></Suspense>
+
 export default class router extends Component {
     render() {
         return (<BrowserRouter>
@@ -24,7 +26,7 @@ export default class router extends Component {
                     <NavLink activeClassName="active" to="/about">About</NavLink>
                     <NavLink activeClassName="active" to="/home">Home</NavLink>
                 </div>
-
+               
                 {/* 2. 关键点2：路由部分一定要用Suspense包裹哦 */}
                 <Suspense fallback={<h1>Loading...</h1>}>
                     <Switch>
@@ -33,6 +35,15 @@ export default class router extends Component {
                         <Redirect to="/home" />
                     </Switch>  
                 </Suspense>
+
+                <div style={{border: 'solid red'}}>
+                    232
+                    {LazyAbout}
+                </div>
+
+                {/* router不能这么写，里面参数得是组件引用，不是实例哦 */}
+                {/* <Route path="/about" component={LazyAbout} /> */}
+                     
             </div>
         </BrowserRouter>)
     }
@@ -44,7 +55,7 @@ export default class router extends Component {
  * 没必要，因为我平常菜单根本就不多，使用路由默认配置挺好的呀，即：
  * 1. 第一次初始化时加载所有的
  * 2. 以后每次切换路由，就很顺畅丝滑啦，额，没有丝毫的卡顿感觉的
- * 
+ * 3. 路由懒加载和组件懒加载差不多哎，都是 <Suspend>来控制回调
  */
 
 

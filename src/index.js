@@ -1,13 +1,13 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom/client';
-// import App from './8_hooks/1_expmple/1_0_state_hook';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './10_special/2_lazy_import/2_lazy_comp';
 
-// const root = ReactDOM.createRoot(document.getElementById('root'));
-// root.render(
-// //   <React.StrictMode>
-//     <App />
-// //   </React.StrictMode>
-// );
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+//   <React.StrictMode>
+    <App />
+//   </React.StrictMode>
+);
 
 
 
@@ -22,5 +22,5 @@
 // import './11_sources/6_update_fiber'
 // import './8_hooks/2_sources/1_create'
 
-import './8_hooks/1_expmple'
+// import './8_hooks/1_expmple'
 

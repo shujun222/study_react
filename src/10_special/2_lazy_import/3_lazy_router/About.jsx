@@ -5,6 +5,10 @@ export default class About extends Component {
         console.log("about didmount");
     }
 
+    componentWillUnmount() {
+        console.log("about willUnmount");
+    }
+
     render() {
         return (
             <div className="content">
